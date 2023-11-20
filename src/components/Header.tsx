@@ -10,7 +10,7 @@ const Header = () => {
       <div className="w-full fixed top-0 bg-white h-24 px-4 flex justify-between items-center border-b border-gray-200">
         <div className="p-6">
           <div className="">
-            <h3>Thrift system</h3>
+            <h3 className="text-xl font-bold">Thrift system</h3>
           </div>
         </div>
         <div>

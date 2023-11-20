@@ -3,7 +3,7 @@ import Banner from "../images/lend-banner1.png";
 import { Box } from "@mui/material";
 import { Link } from "react-router-dom";
 
-const Login: React.FC = () => {
+const ForgotPassword: React.FC = () => {
   const [passwordType, setPasswordType] = useState<boolean>(true);
   const togglePassword = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -33,8 +33,8 @@ const Login: React.FC = () => {
           </div>
           <div className="bg-white w-[50%] h-screen relative">
             <Box sx={formCard}>
-              <h2 className="text-4xl font-bold text-[#213F7D] mb-6">Welcome!</h2>
-              <p className="text-xl text-[#545F7D] mb-8">Enter details to login.</p>
+              <h2 className="text-4xl font-bold text-[#213F7D] mb-6">Forgot Password?</h2>
+              <p className="text-xl text-[#545F7D] mb-8">Enter email linked with account.</p>
 
               <form className="bg-white">
                 <div className="w-[450px]">
@@ -46,52 +46,21 @@ const Login: React.FC = () => {
                       placeholder="Email"
                     />
                   </div>
-                  <div className="mb-5 relative">
-                    <input
-                      className="appearance-none block w-full  text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-[#39CDCC] pr-10"
-                      required
-                      type={passwordType ? "password" : "text"}
-                      placeholder="Password"
-                    />
-                    <div className="absolute inset-y-0 right-0 flex items-center pr-3 pointer">
-                      <button onClick={togglePassword}>
-                        {passwordType ? (
-                          <span className="text-sm text-[#39CDCC] font-semibold">
-                            SHOW
-                          </span>
-                        ) : (
-                          <span className="text-sm text-[#39CDCC] font-semibold">
-                            HIDE
-                          </span>
-                        )}
-                      </button>
-                    </div>
-                  </div>
-                  <div className="flex justify-between">
+                  
                   <div className="flex justify-start my-4">
                     <p>
                       <Link
-                        to="/forgot-password"
+                        to="/"
                         className="text-sm text-[#39CDCC] font-medium"
                       >
-                        FORGOT PASSWORD?
+                        GO BACK TO LOGIN
                       </Link>
                     </p>
                   </div>
-                  <div className="flex justify-end my-4">
-                    <p>
-                      <Link
-                        to="/register"
-                        className="text-sm text-[#39CDCC] font-medium"
-                      >
-                        DON'T HAVE AN ACCOUNT?
-                      </Link>
-                    </p>
-                  </div>
-                  </div>
+                  
                   <div className="mb-4">
                     <button className="w-full bg-[#39CDCC] font-bold text-white py-3 rounded-lg hover:bg-black">
-                      LOG IN
+                      SUBMIT
                     </button>
                   </div>
                 </div>
@@ -117,4 +86,4 @@ const formCardLeft = {
   right: "30%",
   transform: "translate(-50%, -50%)",
 };
-export default Login;
+export default ForgotPassword;

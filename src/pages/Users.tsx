@@ -129,14 +129,7 @@ const Users = () => {
     setAnchorEl(null);
   };
 
-//   // Initialize user status object
-// const initialUserStatus: UserStatus = {};
 
-// // Function to update user status
-// const setUserStatus = (userId: number, status: string) => {
-//   // Update user status object
-//   initialUserStatus[userId] = status;
-// };
 
   const handleMenuItemClick = (menuItem: string, userId: string) => {
     switch (menuItem) {
