@@ -26,17 +26,30 @@ interface AnchorPosition {
 }
 
 const totalOrder = [
-  
   {
     id: 1,
-    name: "Larry Jmaes",
+    title: "Savings Towards Holiday trip",
+    amount: 2500,
+    savings_type: "monthly",
+    date: "25-10-2023"
+  },
+  {
+    id: 2,
+    title: "Savings For Laptop",
     amount: 2000,
-    status: "failed",
-    date: "24-10-2023"
-  }
+    savings_type: "weekly",
+    date: "20-10-2023"
+  },
+  {
+    id: 3,
+    title: "Savings For Rent",
+    amount: 1000,
+    savings_type: "daily",
+    date: "25-10-2023"
+  },
 ]
 
-const DebitTransactionTable = () => {
+const SavingsTable = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState(null);
   const [filter, setFilter] = useState<number | null>(null);
@@ -73,12 +86,12 @@ const DebitTransactionTable = () => {
 
   return (
     <>
-    <TableContainer>
+     <TableContainer>
         <Table>
           <TableHead>
             <TableRow>
               <TableCell>
-                <p className="text-[15px] text-[#898989] font-bold">Name</p>{" "}
+                <p className="text-[15px] text-[#898989] font-bold">Title</p>{" "}
               </TableCell>
               <TableCell>
                 <p className="text-[15px] text-[#898989] font-bold">
@@ -86,11 +99,11 @@ const DebitTransactionTable = () => {
                 </p>
               </TableCell>
               <TableCell>
-                <p className="text-[15px] text-[#898989] font-bold">Status</p>{" "}
+                <p className="text-[15px] text-[#898989] font-bold">Savings Type</p>{" "}
               </TableCell>
               <TableCell>
                 <p className="text-[15px] text-[#898989] font-bold">
-                  Date Created
+                  Date
                 </p>
               </TableCell>
               
@@ -111,25 +124,14 @@ const DebitTransactionTable = () => {
             ) : (
               totalOrder?.map((order, index) => (
                 <TableRow key={order.id}>
-                  <TableCell>{order.name}</TableCell>
+                  <TableCell>{order.title}</TableCell>
                   <TableCell>
                     {order.amount} 
                   </TableCell>
                   
                   <TableCell>
-                        <span
-                          className={
-                            order.status === "completed"
-                              ? "bg-green-200 p-2 rounded-md"
-                              : order.status === "pending"
-                              ? "bg-yellow-200 p-2 rounded-md"
-                              : order.status === "failed"
-                              ? "bg-red-200 p-2 rounded-md"
-                              : ""
-                          }
-                        >
-                          {order.status}
-                        </span>
+                        
+                          {order.savings_type}
                       </TableCell>
                       <TableCell>{order.date}</TableCell>
 
@@ -175,4 +177,4 @@ const DebitTransactionTable = () => {
   )
 }
 
-export default DebitTransactionTable
+export default SavingsTable;

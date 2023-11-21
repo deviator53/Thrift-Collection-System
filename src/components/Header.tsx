@@ -49,7 +49,7 @@ const Header = () => {
         </div>
         <div className="flex items-center gap-7 justify-end">
           <div>
-            <Link className="text-lg text-[#213F7D] font-semibold underline" to={"/docs"}>Docs</Link>
+            <button className="text-lg text-[#213F7D] font-semibold">₦7,000.00</button>
           </div>
           <div>
             <IconButton>

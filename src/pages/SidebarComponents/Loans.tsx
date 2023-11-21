@@ -1,15 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Agriculture from "../../images/Farming.jpg";
 import Home from "../../images/Home.jpg";
 import School from "../../images/University.jpg";
+import LoanModal from "../../components/Modals/LoanModal"
 
 const Loans: React.FC = () => {
+  const [isOpen, setIsOpen] = useState<Boolean>(false);
+
+  function openModal() {
+		setIsOpen(true);
+	}
+
+  function isClose() {
+		setIsOpen(false);
+	}
+
+
   return (
     <>
     <div>
         <div>
         <div className="flex flex-wrap gap-7">
-          <div className="w-[240px] h-[240px] bg-white shadow-md">
+          <button onClick={openModal} className="w-[240px] h-[240px] bg-white hover:border hover:border-[#39CDCC] shadow-md">
             <div className="p-6">
               <div className="w-[200px] h-[150px]">
                 <img
@@ -20,9 +32,9 @@ const Loans: React.FC = () => {
               </div>
               <p className="ml-2 font-semibold text-center text-lg text-[#213F7D]">Agriculture Loan</p>
             </div>
-          </div>
+          </button>
 
-          <div className="w-[240px] h-[240px] bg-white shadow-md">
+          <button onClick={openModal} className="w-[240px] h-[240px] bg-white hover:border hover:border-[#39CDCC] shadow-md">
             <div className="p-6">
               <div className="w-[200px] h-[150px]">
                 <img
@@ -35,9 +47,9 @@ const Loans: React.FC = () => {
                 Housing Loan
               </p>
             </div>
-          </div>
+          </button>
 
-          <div className="w-[240px] h-[240px] bg-white shadow-md">
+          <button onClick={openModal} className="w-[240px] h-[240px] bg-white hover:border hover:border-[#39CDCC] shadow-md">
             <div className="p-6">
               <div className="w-[200px] h-[150px]">
                 <img
@@ -50,10 +62,11 @@ const Loans: React.FC = () => {
                 School Loan
               </p>
             </div>
-          </div>
+          </button>
         </div>
         </div>
     </div>
+    <LoanModal isOpen={isOpen} isClose={isClose} />
     </>
   )
 }

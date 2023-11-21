@@ -202,7 +202,7 @@ const Dashboard = () => {
               </div>
               <p className="ml-2 my-2 text-[#545F7D]">LOANS</p>
               <p className="ml-2 font-semibold text-lg text-[#213F7D]">
-                12,453
+              ₦12,453
               </p>
             </div>
           </div>
@@ -218,7 +218,7 @@ const Dashboard = () => {
               </div>
               <p className="ml-2 my-2 text-[#545F7D]">SAVINGS</p>
               <p className="ml-2 font-semibold text-lg text-[#213F7D]">
-                102,453
+              ₦102,453
               </p>
             </div>
           </div>
