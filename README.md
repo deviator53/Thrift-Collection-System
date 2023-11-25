@@ -1,46 +1,65 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Outline of Thrift System Features
 
-## Available Scripts
+Introduction:
+The Thrift System, developed with ReactJS, Typescript, ReduxToolkit, MUI, and TailwindCSS, aims to provide users with a seamless financial management experience.
 
-In the project directory, you can run:
+Development Stack:
+- ReactJS 
+- Typescript 
+- ReduxToolkit 
+- MUI 
+- TailwindCSS 
 
-### `npm start`
+Limitations:
+Due to the unavailability of endpoints, a JSON Mock Server was used to simulate user authentication and data population for savings, loans, and fees.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+User Authentication Details for Login:
+- Admin:
+  - First Name: David
+  - Last Name: Bradford
+  - Email: bradforddavid082@gmail.com
+  - Password: qwerty
+  - Role: Admin
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- User 1:
+  - First Name: Larry
+  - Last Name: Gaga
+  - Email: larrygaga@gmail.com
+  - Password: gladiator12
+  - Role: User
 
-### `npm test`
+- User 2:
+  - First Name: Sarah
+  - Last Name: Connor
+  - Email: sarahconnor1@gmail.com
+  - Password: terminator1234
+  - Role: User
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Dashboard Features:
+- User Authentication:
+  - Users can log in with provided details.
+  - Admin and user roles are distinguished.
+  - Admins can view all users and details of a single user.
 
-### `npm run build`
+- Wallet Management:
+  - Users can fund/top up their wallet.
+  - Redirects to a Paystack modal for test payment.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Dashboard Overview:
+  - Displays total savings, loans, and transaction history.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- Loan Application:
+  - Users can apply for one of three available loans.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Savings Plan:
+  - Users can create a savings plan.
 
-### `npm run eject`
+- Data Viewing:
+  - Users can view loan requests, fees, etc.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Deployed URL for Preview:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+-FrontEnd: https://thrift-collection-system.vercel.app/
+-Mock Server: https://thrift-collection-system-server.vercel.app/
