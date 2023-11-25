@@ -1,6 +1,7 @@
 import React from 'react'
+import { UserState } from '../../redux/types'
 
-const Transaction = () => {
+const Transaction: React.FC<{ loggedUser: UserState }> = ({loggedUser}) => {
   return (
     <div>Transaction</div>
   )

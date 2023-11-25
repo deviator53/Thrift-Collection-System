@@ -5,9 +5,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
 const LoanModal = (props: { isOpen: any; isClose: any }) => {
-  const [loading, setLoading] = useState(false);
-  const [subject, setSubject] = useState("");
-  const [text, setText] = useState("");
+ 
 
   return (
     <>

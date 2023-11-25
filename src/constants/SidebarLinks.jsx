@@ -8,7 +8,50 @@ import PREFERENCES from "../images/sliders-h 1.png";
 import LOGOUT from "../images/sign-out 1.png";
 
 
-
+export const ADMIN_DASHBOARD_SIDEBAR_LINKS = [
+    {
+        key: 'dashboard',
+        label: 'Dashboard',
+        path: '/dashboard',
+        icon: HOME ,
+    },
+    {
+        key: 'admin',
+        label: 'Admin',
+        path: 'users',
+        icon: SERVICES ,
+    },
+    {
+        key: 'loans',
+        label: 'Loans',
+        path: 'loans',
+        icon: LOAN
+    },
+    {
+        key: 'savings',
+        label: 'Savings',
+        path: 'savings',
+        icon: PIGGYBANK
+    },
+    {
+        key: 'loan',
+        label: 'Loan Requests',
+        path: 'loan',
+        icon: REQUEST
+    },
+    {
+        key: 'fees',
+        label: 'Fees and Charges',
+        path: 'fees',
+        icon: FEES
+    },
+    {
+        key: 'preferences',
+        label: 'Preferences',
+        path: 'preferences',
+        icon: PREFERENCES
+    },
+];
 
 export const DASHBOARD_SIDEBAR_LINKS = [
     {
@@ -40,12 +83,6 @@ export const DASHBOARD_SIDEBAR_LINKS = [
         label: 'Fees and Charges',
         path: 'fees',
         icon: FEES
-    },
-    {
-        key: 'services',
-        label: 'Services',
-        path: 'services',
-        icon: SERVICES
     },
     {
         key: 'preferences',

@@ -1,5 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
+import { useSelector } from 'react-redux';
 import Dashboard from './pages/Dashboard';
 import Guarantor from './pages/Guarantor';
 import Layout from './pages/Layout';
@@ -15,32 +17,36 @@ import FeesAndCharges from './pages/SidebarComponents/FeesAndCharges';
 import Transaction from './pages/SidebarComponents/Transaction';
 import Services from './pages/SidebarComponents/Services';
 import Preference from './pages/SidebarComponents/Preference';
+import { RootState } from './redux/types';
+import PageNotFound from './pages/PageNotFound';
 
 
 
 function App() {
+  const loggedInUser = useSelector((state: RootState) => state.users.loggedInUser);
+
   return (
-    <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route element={<PrivateRoute />}>
 
         <Route path="/dashboard" element={<Layout />}>
-          <Route index element={<Dashboard />} />
+          <Route index element={<Dashboard  loggedUser={loggedInUser} />} />
+          <Route path="*" element={<PageNotFound />} />
           <Route path="users" element={<Users />} />
-          <Route path="users/:userId" element={<User/>} />
-          <Route path="loans" element={<Loans />} />
-          <Route path="loan" element={<LoanRequest />} />
-          <Route path="fees" element={<FeesAndCharges />} />
-          <Route path="transactions" element={<Transaction />} />
-          <Route path="services" element={<Services />} />
-          <Route path="preferences" element={<Preference />} />
-          <Route path="savings" element={<Savings/>} />
-          <Route path="guarantors" element={<Guarantor/>} />
+          <Route path="users/:userId" element={<User />} />
+          <Route path="loans" element={<Loans loggedUser={loggedInUser} />} />
+          <Route path="loan" element={<LoanRequest loggedUser={loggedInUser} />} />
+          <Route path="fees" element={<FeesAndCharges loggedUser={loggedInUser} />} />
+          <Route path="transactions" element={<Transaction loggedUser={loggedInUser} />} />
+          <Route path="services" element={<Services loggedUser={loggedInUser} />} />
+          <Route path="preferences" element={<Preference loggedUser={loggedInUser} />} />
+          <Route path="savings" element={<Savings loggedUser={loggedInUser}/>} />
         </Route>
+</Route>
       </Routes>
-     </BrowserRouter>
   );
 }
 

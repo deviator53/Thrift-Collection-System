@@ -13,6 +13,7 @@ import {
   TableRow,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { UserState } from '../redux/types';
 
 interface AnchorEl {
   [key: number]: HTMLElement;
@@ -25,32 +26,8 @@ interface AnchorPosition {
   };
 }
 
-const totalOrder = [
-  {
-    id: 1,
-    title: "Savings Towards Holiday trip",
-    amount: 2500,
-    savings_type: "monthly",
-    date: "25-10-2023"
-  },
-  {
-    id: 2,
-    title: "Savings For Laptop",
-    amount: 2000,
-    savings_type: "weekly",
-    date: "20-10-2023"
-  },
-  {
-    id: 3,
-    title: "Savings For Rent",
-    amount: 1000,
-    savings_type: "daily",
-    date: "25-10-2023"
-  },
-]
 
-const SavingsTable = () => {
-  const [loading, setLoading] = useState<boolean>(true);
+const SavingsTable: React.FC<{ loggedUser: UserState }> = ({loggedUser}) => {
   const [error, setError] = useState(null);
   const [filter, setFilter] = useState<number | null>(null);
   const [anchorPosition, setAnchorPosition] = useState<AnchorPosition>({});
@@ -115,14 +92,14 @@ const SavingsTable = () => {
               <div className="w-full flex justify-center py-4">
                 Error: {error}
               </div>
-            ) : totalOrder.length === 0 ? (
+            ) : loggedUser.savings.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={6} className="text-center">
                   No Order
                 </TableCell>
               </TableRow>
             ) : (
-              totalOrder?.map((order, index) => (
+              loggedUser?.savings?.map((order, index) => (
                 <TableRow key={order.id}>
                   <TableCell>{order.title}</TableCell>
                   <TableCell>
@@ -154,16 +131,10 @@ const SavingsTable = () => {
                         horizontal: "left",
                       }}
                     >
-                      <MenuItem component={Link} to={`customer-desc`}>
+                      <MenuItem>
                         View
                       </MenuItem>
-                      <MenuItem component={Link} to={`customer-description`}>
-                        Track
-                      </MenuItem>
-                      
-                        <MenuItem>
-                          Delete
-                        </MenuItem>
+                  
                       
                     </Menu>
                   </TableCell>

@@ -13,6 +13,7 @@ import {
   TableRow,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { UserState } from "../../redux/types";
 
 interface AnchorEl {
   [key: number]: HTMLElement;
@@ -25,28 +26,8 @@ interface AnchorPosition {
   };
 }
 
-const totalOrder = [
-  {
-    id: 1,
-    description: "Monthly Charge",
-    amount: "25.00",
-    date: "25-10-2023",
-  },
-  {
-    id: 2,
-    description: "Maintenance Fee",
-    amount: "10.0",
-    date: "24-10-2023",
-  },
-  {
-    id: 3,
-    description: "Payment Fee",
-    amount: "5.00",
-    date: "20-10-2023",
-  },
-];
 
-const FeesAndCharges = () => {
+const FeesAndCharges: React.FC<{ loggedUser: UserState }> = ({loggedUser}) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState(null);
   const [filter, setFilter] = useState<number | null>(null);
@@ -116,14 +97,14 @@ const FeesAndCharges = () => {
                 <div className="w-full flex justify-center py-4">
                   Error: {error}
                 </div>
-              ) : totalOrder.length === 0 ? (
+              ) : loggedUser.fees.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={6} className="text-center">
                     No Order
                   </TableCell>
                 </TableRow>
               ) : (
-                totalOrder?.map((order, index) => (
+                loggedUser.fees?.map((order, index) => (
                   <TableRow key={order.id}>
                     <TableCell>{order.description}</TableCell>
                     <TableCell>₦{order.amount}</TableCell>
@@ -148,14 +129,10 @@ const FeesAndCharges = () => {
                           horizontal: "left",
                         }}
                       >
-                        <MenuItem component={Link} to={`customer-desc`}>
+                        <MenuItem>
                           View
                         </MenuItem>
-                        <MenuItem component={Link} to={`customer-description`}>
-                          Track
-                        </MenuItem>
-
-                        <MenuItem>Delete</MenuItem>
+                        
                       </Menu>
                     </TableCell>
                   </TableRow>

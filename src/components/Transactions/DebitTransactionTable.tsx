@@ -13,6 +13,7 @@ import {
   TableRow,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { UserState } from '../../redux/types';
 
 interface AnchorEl {
   [key: number]: HTMLElement;
@@ -25,19 +26,9 @@ interface AnchorPosition {
   };
 }
 
-const totalOrder = [
-  
-  {
-    id: 1,
-    name: "Larry Jmaes",
-    amount: 2000,
-    status: "failed",
-    date: "24-10-2023"
-  }
-]
 
-const DebitTransactionTable = () => {
-  const [loading, setLoading] = useState<boolean>(true);
+
+const DebitTransactionTable: React.FC<{ loggedUser: UserState }> = ({loggedUser}) => {
   const [error, setError] = useState(null);
   const [filter, setFilter] = useState<number | null>(null);
   const [anchorPosition, setAnchorPosition] = useState<AnchorPosition>({});
@@ -102,14 +93,14 @@ const DebitTransactionTable = () => {
               <div className="w-full flex justify-center py-4">
                 Error: {error}
               </div>
-            ) : totalOrder.length === 0 ? (
+            ) : loggedUser.transactions.debitTransactions.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={6} className="text-center">
                   No Order
                 </TableCell>
               </TableRow>
             ) : (
-              totalOrder?.map((order, index) => (
+              loggedUser.transactions.debitTransactions?.map((order, index) => (
                 <TableRow key={order.id}>
                   <TableCell>{order.name}</TableCell>
                   <TableCell>
@@ -152,16 +143,10 @@ const DebitTransactionTable = () => {
                         horizontal: "left",
                       }}
                     >
-                      <MenuItem component={Link} to={`customer-desc`}>
+                      <MenuItem>
                         View
                       </MenuItem>
-                      <MenuItem component={Link} to={`customer-description`}>
-                        Track
-                      </MenuItem>
                       
-                        <MenuItem>
-                          Delete
-                        </MenuItem>
                       
                     </Menu>
                   </TableCell>

@@ -3,8 +3,9 @@ import Agriculture from "../../images/Farming.jpg";
 import Home from "../../images/Home.jpg";
 import School from "../../images/University.jpg";
 import LoanModal from "../../components/Modals/LoanModal"
+import { UserState } from '../../redux/types';
 
-const Loans: React.FC = () => {
+const Loans: React.FC<{ loggedUser: UserState }> = ({loggedUser}) => {
   const [isOpen, setIsOpen] = useState<Boolean>(false);
 
   function openModal() {

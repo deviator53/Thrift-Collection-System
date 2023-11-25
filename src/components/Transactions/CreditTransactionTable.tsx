@@ -13,6 +13,7 @@ import {
   TableRow,
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { UserState } from '../../redux/types';
 
 interface AnchorEl {
   [key: number]: HTMLElement;
@@ -25,26 +26,8 @@ interface AnchorPosition {
   };
 }
 
-const totalOrder = [
-  {
-    id: 1,
-    name: "David Bradford",
-    amount: 2500,
-    status: "completed",
-    date: "25-10-2023"
-  },
-  {
-    id: 2,
-    name: "Sarah Connor",
-    amount: 2500,
-    status: "pending",
-    date: "20-10-2023"
-  },
-  
-]
 
-const CreditTransactionTable = () => {
-  const [loading, setLoading] = useState<boolean>(true);
+const CreditTransactionTable: React.FC<{ loggedUser: UserState }> = ({loggedUser}) => {
   const [error, setError] = useState(null);
   const [filter, setFilter] = useState<number | null>(null);
   const [anchorPosition, setAnchorPosition] = useState<AnchorPosition>({});
@@ -109,14 +92,14 @@ const CreditTransactionTable = () => {
               <div className="w-full flex justify-center py-4">
                 Error: {error}
               </div>
-            ) : totalOrder.length === 0 ? (
+            ) : loggedUser.transactions.creditTransactions.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={6} className="text-center">
                   No Order
                 </TableCell>
               </TableRow>
             ) : (
-              totalOrder?.map((order, index) => (
+              loggedUser.transactions.creditTransactions?.map((order, index) => (
                 <TableRow key={order.id}>
                   <TableCell>{order.name}</TableCell>
                   <TableCell>
@@ -159,16 +142,10 @@ const CreditTransactionTable = () => {
                         horizontal: "left",
                       }}
                     >
-                      <MenuItem component={Link} to={`customer-desc`}>
+                      <MenuItem>
                         View
                       </MenuItem>
-                      <MenuItem component={Link} to={`customer-description`}>
-                        Track
-                      </MenuItem>
                       
-                        <MenuItem>
-                          Delete
-                        </MenuItem>
                       
                     </Menu>
                   </TableCell>

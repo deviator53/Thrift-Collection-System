@@ -1,9 +1,40 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Banner from "../images/lend-banner1.png";
+import { useDispatch, useSelector } from 'react-redux';
 import { Box } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { login } from '../redux/slices/authSlice';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { fetchUsers, setLoggedInUser, setUser } from "../redux/slices/userSlice";
+import { RootState } from "../redux/types";
+import { AnyAction, Dispatch, ThunkDispatch } from "@reduxjs/toolkit";
+
+interface UserType {
+  id: number;
+  info: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    password: string;
+    phoneNumber: string;
+    role: string;
+  };
+ 
+  wallet: {
+    balance: number;
+  };
+}
 
 const Login: React.FC = () => {
+  const user = useSelector((state: RootState) => state.users.user);
+  console.log("reduxdata",user);
+  const status = useSelector((state: RootState) => state.users.status);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [passwordType, setPasswordType] = useState<boolean>(true);
   const togglePassword = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -11,6 +42,37 @@ const Login: React.FC = () => {
     e.preventDefault();
     setPasswordType(!passwordType);
   };
+
+  useEffect(() => {
+    (dispatch as ThunkDispatch<RootState, void, AnyAction>)(fetchUsers());
+  }, [dispatch]);
+
+
+const handleLogin = (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const loggedInUser = user?.find((u:UserType) => u.info.email === email && u.info.password === password);
+
+  if (loggedInUser) {
+    dispatch(setLoggedInUser(loggedInUser));
+    toast.success("login succesfull", {
+      autoClose: 3000,
+      position: "top-right",
+    });
+    navigate("/dashboard");
+  } else {
+    toast.error("invalid credentials", {
+      autoClose: 3000,
+      position: "top-right",
+    });
+    console.log("Login failed");
+  }
+};
+
+if (status === "loading") {
+  return <div className="flex justify-center items-center w-screen h-screen text-3xl font-semibold">Loading...</div>;
+}
+
   return (
     <>
       <div>
@@ -43,6 +105,8 @@ const Login: React.FC = () => {
                       className="appearance-none block w-full text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-[#39CDCC]"
                       required
                       type="text"
+                      value={email}
+                      onChange={(e)=>setEmail(e.target.value)}
                       placeholder="Email"
                     />
                   </div>
@@ -50,6 +114,8 @@ const Login: React.FC = () => {
                     <input
                       className="appearance-none block w-full  text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-[#39CDCC] pr-10"
                       required
+                      value={password}
+                      onChange={(e)=>setPassword(e.target.value)}
                       type={passwordType ? "password" : "text"}
                       placeholder="Password"
                     />
@@ -90,7 +156,7 @@ const Login: React.FC = () => {
                   </div>
                   </div>
                   <div className="mb-4">
-                    <button className="w-full bg-[#39CDCC] font-bold text-white py-3 rounded-lg hover:bg-black">
+                    <button onClick={handleLogin} className="w-full bg-[#39CDCC] font-bold text-white py-3 rounded-lg hover:bg-black">
                       LOG IN
                     </button>
                   </div>

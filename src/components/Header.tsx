@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux"
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import { IconButton } from "@mui/material";
 import Avatar from "../images/avatars.png";
+import WalletPaymentModal from "./Modals/WalletPaymentModal";
+import  { RootState }  from "../redux/types";
 
 const Header = () => {
+  const loggedInUser = useSelector((state: RootState) => state.users.loggedInUser);
+
+  const [isOpen, setIsOpen] = useState<Boolean>(false);
+
+  function openModal() {
+        setIsOpen(true);
+    }
+
+  function isClose() {
+        setIsOpen(false);
+    }
   return (
     <>
       <div className="w-full fixed top-0 bg-white h-24 px-4 flex justify-between items-center border-b border-gray-200">
@@ -49,7 +63,7 @@ const Header = () => {
         </div>
         <div className="flex items-center gap-7 justify-end">
           <div>
-            <button className="text-lg text-[#213F7D] font-semibold">₦7,000.00</button>
+            <button onClick={openModal} className="text-lg text-[#213F7D] font-semibold">₦{loggedInUser.wallet.balance.toLocaleString()}</button>
           </div>
           <div>
             <IconButton>
@@ -61,12 +75,14 @@ const Header = () => {
             <img src={Avatar} alt="avatar" className="w-full h-full object-fit"/>
             </div>
             <div className="flex items-center">
-              <p className="text-lg text-[#213F7D]">Admin</p>
+              <p className="text-lg text-[#213F7D]">{loggedInUser.info.firstName}</p>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 14l-4-4h8z" fill="rgba(154,154,165,1)"/></svg>
             </div>
           </div>
         </div>
       </div>
+      <WalletPaymentModal isOpen={isOpen} isClose={isClose} />
+
     </>
   );
 };

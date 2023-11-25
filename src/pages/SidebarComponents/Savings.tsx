@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import SavingsIcon from "../../images/savings-icon.png";
 import SavingsPaymentModal from "../../components/Modals/SavingsPaymentModal";
 import SavingsTable from "../../components/SavingsTable";
-// import SavingsPaymentModal from "../../components/SavingsPaymentModal";
+import { UserState } from "../../redux/types";
 
-const Savings = () => {
+const Savings: React.FC<{ loggedUser: UserState }> = ({loggedUser}) => {
   const [isOpen, setIsOpen] = useState<Boolean>(false);
 
   function openModal() {
@@ -45,7 +45,7 @@ const Savings = () => {
           </button>
         </div>
         <div className="p-4 bg-white my-4">
-          <SavingsTable />
+          <SavingsTable loggedUser={loggedUser} />
         </div>
       </div>
       <SavingsPaymentModal isOpen={isOpen} isClose={isClose} />
