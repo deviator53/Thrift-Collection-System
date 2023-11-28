@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
+import { Analytics } from '@vercel/analytics/react';
 import { ToastContainer } from "react-toastify";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -15,6 +16,7 @@ root.render(
     <BrowserRouter>
       <Provider store={store}>
         <App />
+        <Analytics />
         <ToastContainer />
       </Provider>
     </BrowserRouter>
